@@ -5,7 +5,7 @@
 #include <linux/uaccess.h>
 #include <linux/version.h>
 
-#define PROCFS_NAME "lab3"
+#define procfs_name "lab3"
 
 static struct proc_dir_entry *our_proc_file = NULL;
 static unsigned long prev_value = 0;
@@ -49,15 +49,15 @@ static const struct file_operations proc_file_fops = {
 
 static int __init procfs1_init(void)
 {
-    our_proc_file = proc_create(PROCFS_NAME, 0644, NULL, &proc_file_fops);
-    pr_info("/proc/%s created\n", PROCFS_NAME);
+    our_proc_file = proc_create(procfs_name, 0644, NULL, &proc_file_fops);
+    pr_info("/proc/%s created\n", procfs_name);
     return 0;
 }
 
 static void __exit procfs1_exit(void)
 {
     proc_remove(our_proc_file);
-    pr_info("/proc/%s removed\n", PROCFS_NAME);
+    pr_info("/proc/%s removed\n", procfs_name);
 }
 
 module_init(procfs1_init);
